@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Weathervane Test Site
 
-## Getting Started
+This is a test site for [Weathervane](https://github.com/its-alec-at-work/weathervane) — behavioral analytics without a vendor.
 
-First, run the development server:
+Weathervane watches what users actually do in your application and emits structured events directly in the browser. No backend, no dashboards, no network requests, no vendor lock-in. You forward the data anywhere—or nowhere.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Think of it as the analytics collection layer that modern web applications are missing. It captures behavioral signals (content exposure, engagement time, clicks, form intent, navigation patterns) and lets you route them to your own pipeline: a data warehouse, Segment, PostHog, GA4, or a custom API.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## What's in This Test Site
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This site simulates a fictional "PhotoPrint 3D" e-commerce store to demonstrate Weathervane's tracking capabilities:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Pages
+- **Home** (`/`) — Hero section, features, featured products, testimonials, newsletter signup
+- **Products** (`/products`) — Product listing with filter controls
+- **Product Detail** (`/products/[slug]`) — Individual product pages
+- **Contact** (`/contact`) — Contact form
+- **Demo** (`/demo`) — Interactive testing page for advanced features
 
-## Learn More
+### Tracked Features
 
-To learn more about Next.js, take a look at the following resources:
+**Content Tracking**
+- `data-vane-content` attributes on sections and cards
+- Automatic visibility detection and exposure timing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Click Tracking**
+- `data-vane-content-click` on CTAs and navigation elements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Form Tracking**
+- `data-vane-form-*` attributes on newsletter signup, contact form, and chat
 
-## Deploy on Vercel
+**Analytics Integration**
+- Google Analytics 4 event bridge
+- Cookie consent management with consent-aware tracking
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Advanced (Demo Page)**
+- Web Vitals (FCP, LCP, CLS, FID)
+- Error tracking (uncaught errors, promise rejections)
+- Rage click detection
+- Shadow DOM content tracking
+- Dynamic content / DOM mutation detection
+- Personalization segment testing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Weathervane Configuration
+
+The Weathervane config is set in `components/analytics/AnalyticsProvider.tsx`. Debug mode is enabled by default, so all tracked events are logged to the browser console.
